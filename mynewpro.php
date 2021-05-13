@@ -29,3 +29,38 @@ composer create-project laravel/laravel newproject
 10) go to your car controller and pull in your car model
     use App\Models\Car;   
 11) check your endpoint 'php artisan route:list'
+12) anything you want to hide from your json object collection add to your  model 'protected $hidden = ['id'];' 
+13) we added a scheme to an already existing migration(we could have made another), the schema is below
+     
+        Schema::create('cars_model', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unassignedInteger('car_id');
+            $table->string('model_name');
+            $table->timestamps();
+            $table->foreign('car_id')
+            ->references('id')->on('cars')->onDelete('cascade');
+
+        });
+
+       when you run php artisan migrate, it will say nothing to migrate
+       to migrate this, you have to roll back the migration and migrate again  
+       'php artisan migrate:rollback'    
+
+14)ELOQUENT RELATIONSHIP
+    a) Create cars_model migration, reference the cars_model table to the cars table 
+            Schema::create('cars_model', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('car_id');
+            $table->string('model_name');
+            $table->timestamps();
+            $table->foreign('car_id')
+            ->references('id')->on('cars')->onDelete('cascade');
+
+        });
+    b) create CarModel model
+    c) add the eloquent function to the Car  Model this connects it to the CarModel 
+           public function carsmodels(){
+         return $this->hasMany(CarModel::class);
+     }
+
+

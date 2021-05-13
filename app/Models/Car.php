@@ -13,4 +13,12 @@ class Car extends Model
     public $timestamps = true;
     
      protected $fillable = ['name','description'];
+     protected $hidden = ['updated_at']; //add what you want to hide in your json object collection
+     protected $visible = ['name','description']; // shows only values or column you want visible
+
+
+
+     public function carsmodels(){
+         return $this->hasMany(CarModel::class);
+     }
 }
