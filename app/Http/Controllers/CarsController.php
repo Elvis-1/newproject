@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Car;
 
 class CarsController extends Controller
 {
@@ -13,7 +14,31 @@ class CarsController extends Controller
      */
     public function index()
     {
-        //
+        // select all cars
+        // $cars = Car::all();
+        // dd($cars);
+        // $cars = Car::where('name','=','Audi')
+        // ->get();
+
+        // $cars = Car::chunk(2, function($cars){
+        //       foreach($cars as $car){
+        //           print_r($car);
+        //       }
+        // });
+
+        // $cars = Car::where('name','=','Audi')->firstOrFail();
+        // $cars = Car::where('name','=','Tesla')->firstOrFail();
+
+        // $cars = Car::where('name','=','Audi')->count();
+        // print_r(Car::where('name','=','Audi')->count());
+        // print_r(Car::all()->count());
+        // print_r(Car::sum('id'));
+        // print_r(Car::avg('id'));
+
+        $cars = Car::all();
+        return view('cars.index',[
+            'cars'=> $cars
+        ]);
     }
 
     /**
@@ -23,7 +48,7 @@ class CarsController extends Controller
      */
     public function create()
     {
-        //
+       return view('cars.create');
     }
 
     /**
@@ -34,7 +59,22 @@ class CarsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd('ok');
+
+        // $car = new Car;
+        // $car->name = $request->input('name');
+        // $car->description = $request->input('description');
+        // $car->save();
+
+        // return redirect('/cars');
+
+        /*  alternatively  */
+
+        $car = Car::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description') // to use this method, go to your model and add a fillable assignment
+        ]);
+        return redirect('/cars');
     }
 
     /**
@@ -56,7 +96,8 @@ class CarsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $car =Car::find($id)->first();
+        return view('cars.edit')->with('car',$car);
     }
 
     /**
@@ -68,7 +109,13 @@ class CarsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $car = Car::where('id',$id)
+        ->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description') // to use this method, go to your model and add a fillable assignment
+        ]);
+
+        return redirect('/cars');
     }
 
     /**
