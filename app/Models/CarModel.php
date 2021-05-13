@@ -9,5 +9,10 @@ class CarModel extends Model
 {
     use HasFactory;
 
-    
+    protected $table = 'cars_model';
+    protected $primaryKey = 'id';
+   // a car model belongs to a car
+    public function car(){
+        return $this->belongsTo(Car::class);
+    }
 }

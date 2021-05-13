@@ -18,7 +18,7 @@ class Car extends Model
 
 
 
-     public function carsmodels(){
+     public function carsModels(){
          return $this->hasMany(CarModel::class);
      }
 }

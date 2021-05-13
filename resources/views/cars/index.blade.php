@@ -1,17 +1,17 @@
 @extends('layouts.app')
-
+{{--ELOQUENT SERIALIZATION --}}
 {{-- COLLECTION TO ARRAY --}}
 {{-- @foreach($cars as $car)
       {{$car['name']}}
 @endforeach --}}
 
 {{-- COLLECTION TO JSON --}}
-@foreach($cars as $car)
+{{-- @foreach($cars as $car)
       {{$car->name}}
-@endforeach
+@endforeach --}}
 @section('content')
 
-{{--ELOQUENT SERIALIZATION --}}
+
 
 <div style="margin:0 100px">
      
@@ -34,11 +34,16 @@
          </div>
          <br>
          <div>
-         <small style="color:blue;"><I>FOUNDED: 2021</I></small>
+         <small style="color:blue;"><I>FOUNDED: {{$car->founded}}</I></small>
          </div>
          <div>
-            <h1 style=" margin-top:20px; font-size:50px"></h1>
-            <p></p>
+            <h1 style=" margin-top:20px; font-size:50px">
+            <a href="/cars/{{$car->id}}">{{$car->name}}</a>
+            </h1>
+            <p>{{$car->description}}</p>
+                   <ul>
+                  
+
             <hr>
         </div>
 @endforeach

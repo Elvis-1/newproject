@@ -43,9 +43,16 @@ class CarsController extends Controller
         // RETURNING A COLLECTION --- ELOQUENT SERIALISATION
         // $cars = Car::all()->toArray();
         // var_dump($cars);
-        $cars = Car::all()->toJson();
-        $cars = json_decode($cars);
-        var_dump($cars);
+        // $cars = Car::all()->toJson();
+        // $cars = json_decode($cars);
+        // var_dump($cars);
+        // return view('cars.index',[
+        //     'cars'=> $cars
+        // ]);
+
+        $cars = Car::all();
+        
+       
         return view('cars.index',[
             'cars'=> $cars
         ]);
@@ -96,7 +103,10 @@ class CarsController extends Controller
      */
     public function show($id)
     {
-        //
+        // dd($id);
+        $car = Car::find($id);
+        // dd($car);
+        return view('cars.show')->with('car',$car);
     }
 
     /**
