@@ -35,10 +35,21 @@ class CarsController extends Controller
         // print_r(Car::sum('id'));
         // print_r(Car::avg('id'));
 
-        $cars = Car::all();
+        // $cars = Car::all();
+        // return view('cars.index',[
+        //     'cars'=> $cars
+        // ]);
+
+        // RETURNING A COLLECTION --- ELOQUENT SERIALISATION
+        // $cars = Car::all()->toArray();
+        // var_dump($cars);
+        $cars = Car::all()->toJson();
+        $cars = json_decode($cars);
+        // var_dump($cars);
         return view('cars.index',[
             'cars'=> $cars
         ]);
+
     }
 
     /**
@@ -126,6 +137,8 @@ class CarsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $car = Car::find($id)->first();
+        $car->delete();
+        return redirect('/cars');
     }
 }

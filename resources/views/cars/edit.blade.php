@@ -4,7 +4,7 @@
 {{-- <div style="margin:0 100px"> --}}
 <div style="margin:100px 360px">
 <h1>UPDATE A CAR</h1>
-<form action="/cars/{{$car->id}}" method="post">
+<form action="/cars/{{$car->id}}" method="POST">
 @csrf
     @method('PUt')
        <div>

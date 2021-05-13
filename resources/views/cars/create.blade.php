@@ -4,7 +4,7 @@
 {{-- <div style="margin:0 100px"> --}}
 <div style="margin:100px 360px">
 <h1>CREATE A CAR</h1>
-<form action="/cars" method="post">
+<form action="/cars" method="POST">
 @csrf
        <div>
           <input type="text" name="name" placeholder="Name of car">
