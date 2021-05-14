@@ -4,8 +4,11 @@
 {{-- <div style="margin:0 100px"> --}}
 <div style="margin:100px 360px">
 <h1>CREATE A CAR</h1>
-<form action="/cars" method="POST">
+<form action="/cars" method="POST" enctype="multipart/form-data">
 @csrf
+        <div>
+          <input type="file" name="image">
+       </div><br><br>
        <div>
           <input type="text" name="name" placeholder="Name of car">
        </div><br><br>

@@ -12,7 +12,7 @@ class Car extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
     
-     protected $fillable = ['name','description'];
+     protected $fillable = ['name','description','founded','image_path'];
      protected $hidden = ['updated_at']; //add what you want to hide in your json object collection
      protected $visible = ['name','description']; // shows only values or column you want visible
 

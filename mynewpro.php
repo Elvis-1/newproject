@@ -70,3 +70,6 @@ composer create-project laravel/laravel newproject
    run 'php artisan make:request nameofrequest'
    the form request created is found in the request folder    
    add it the controller where its needed
+19) to check all basic artisan commands, run 'php artisan list'
+20) to clear your remember_token in db run '$ php artisan auth:clear-resets'
+    

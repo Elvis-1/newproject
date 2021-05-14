@@ -77,37 +77,110 @@ class CarsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // public function store(Request $request)
+    // {
+
+    //     // REQUEST VALIDATION
+    //     //    $request->validate([
+    //     //        'name' => 'required|unique:cars',
+    //     //        'founded' => 'required|integer|min:0|max:2021',
+    //     //        'description' => 'required'
+    //     //    ]);
+
+    //     $request->validate([
+    //         'name' => new Uppercase,
+    //         'founded' => 'required|integer|min:0|max:2021',
+    //         'description' => 'required'
+    //     ]);
+    //     // if it's valid, it will proceed
+    //     // if it's not valid, throw a validationExeption
+    //     // dd('ok');
+
+    //     // $car = new Car;
+    //     // $car->name = $request->input('name');
+    //     // $car->description = $request->input('description');
+    //     // $car->save();
+
+    //     // return redirect('/cars');
+
+    //     /*  alternatively  */
+
+    //     $car = Car::create([
+    //         'name' => $request->input('name'),
+    //         'description' => $request->input('description') // to use this method, go to your model and add a fillable assignment
+    //     ]);
+    //     return redirect('/cars');
+    // }
+
+    // USING REQUEST VALIDATION FORM
+
+    // public function store(CreateValidationRequest $request)
+    // {
+
+        
+
+    //           $request->validated();
+        
+    //     // if it's valid, it will proceed
+    //     // if it's not valid, throw a validationExeption
+    //     // dd('ok');
+
+    //     // $car = new Car;
+    //     // $car->name = $request->input('name');
+    //     // $car->description = $request->input('description');
+    //     // $car->save();
+
+    //     // return redirect('/cars');
+
+    //     /*  alternatively  */
+
+    //     $car = Car::create([
+    //         'name' => $request->input('name'),
+    //         'description' => $request->input('description'), // to use this method, go to your model and add a fillable assignment
+    //         'founded' => $request->input('founded')
+    //     ]);
+    //     return redirect('/cars');
+    // }
+
+    
+    // VALIDATING IMAGE
+
     public function store(Request $request)
     {
 
-        // REQUEST VALIDATION
-        //    $request->validate([
-        //        'name' => 'required|unique:cars',
-        //        'founded' => 'required|integer|min:0|max:2021',
-        //        'description' => 'required'
-        //    ]);
-
         $request->validate([
-            'name' => new Uppercase,
+            'name'=> 'required',
             'founded' => 'required|integer|min:0|max:2021',
-            'description' => 'required'
+            'image'=>'required|mimes:jpg,png,jpeg|max:5048'
         ]);
-        // if it's valid, it will proceed
-        // if it's not valid, throw a validationExeption
-        // dd('ok');
+        // Methods we can use on the request
+        //guessExtension()
+        //getMimeType()
+        //store()
+        //asStore()
+        //store
+        //move()
+        // guessClientExtension()
+        //getClientMimeType()
+        // getClientOriginalName()
+        // getSize()
+        //getError()
+        //isValid()
 
-        // $car = new Car;
-        // $car->name = $request->input('name');
-        // $car->description = $request->input('description');
-        // $car->save();
-
-        // return redirect('/cars');
-
-        /*  alternatively  */
+         $newImageName = time() . '-'. $request->name .'.'.$request->image->extension();
+        $test = $request->image->move(public_path('images'),$newImageName);
+        //  dd($newImageName);
+        //   $request->file('image')->guessExtension();
+        //    dd($test);
+               
+        
+       
 
         $car = Car::create([
             'name' => $request->input('name'),
-            'description' => $request->input('description') // to use this method, go to your model and add a fillable assignment
+            'description' => $request->input('description'), // to use this method, go to your model and add a fillable assignment
+            'founded' => $request->input('founded'),
+            'image_path'=>$newImageName
         ]);
         return redirect('/cars');
     }

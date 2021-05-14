@@ -2,6 +2,9 @@
 
 @section('content')
 <div style="margin:0 100px">
+             <div>
+            <img src="{{asset('images/'. $car->image_path)}}">
+         </div>
      
         <div>
             <h1 style="text-align:center; margin-top:50px; font-size:50px">{{$car->name}}</h1>
