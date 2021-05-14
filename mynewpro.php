@@ -63,4 +63,8 @@ composer create-project laravel/laravel newproject
          return $this->hasMany(CarModel::class);
      }
 15) make engine model 
+16) request validation
+17) to set your own rules, do '$ php artisan make:rule Uppercase'
+   go to uppercase in the rules folder and work on it and require it in your controller 'use App\Rules\Uppercase;'
+    
 
