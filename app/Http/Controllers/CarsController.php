@@ -80,11 +80,17 @@ class CarsController extends Controller
     {
 
         // REQUEST VALIDATION
-           $request->validate([
-               'name' => 'required|unique:cars',
-               'founded' => 'required|integer|min:0|max:2021',
-               'description' => 'required'
-           ]);
+        //    $request->validate([
+        //        'name' => 'required|unique:cars',
+        //        'founded' => 'required|integer|min:0|max:2021',
+        //        'description' => 'required'
+        //    ]);
+
+        $request->validate([
+            'name' => new Uppercase,
+            'founded' => 'required|integer|min:0|max:2021',
+            'description' => 'required'
+        ]);
         // dd('ok');
 
         // $car = new Car;
