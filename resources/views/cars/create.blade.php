@@ -12,11 +12,23 @@
         <div>
           <input type="text" name="description" placeholder="description">
        </div><br><br>
+       <div>
+          <input type="text" name="founded" placeholder="founded">
+       </div><br><br>
         <div>
           <input type="submit" placeholder="submit">
        </div>
 
 </form>
+@if($errors->any())
+   <div>
+   @foreach ($errors->all() as $error )
+
+     <li>{{$error}}</li>
+       
+   @endforeach
+   
+   </div>
 </div>
-  
+ @endif 
 @endsection

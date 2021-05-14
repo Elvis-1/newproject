@@ -77,6 +77,13 @@ class CarsController extends Controller
      */
     public function store(Request $request)
     {
+
+        // REQUEST VALIDATION
+           $request->validate([
+               'name' => 'required|unique:cars',
+               'founded' => 'required|integer|min:0|max:2021',
+               'description' => 'required'
+           ]);
         // dd('ok');
 
         // $car = new Car;
@@ -106,6 +113,7 @@ class CarsController extends Controller
         // dd($id);
         $car = Car::find($id);
         // dd($car);
+        //dd($car->engines);
         return view('cars.show')->with('car',$car);
     }
 

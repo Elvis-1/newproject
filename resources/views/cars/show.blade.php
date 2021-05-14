@@ -19,7 +19,8 @@
                    @forelse ($car->carsModels as $model)
                        
                     <li>
-                     {{$model['model_name']}}
+                    {{-- we are accessing it like this because its an object --}}
+                     {{$model['model_name']}}  
                     </li>   
                     @empty                
                    <p>No models found</p>

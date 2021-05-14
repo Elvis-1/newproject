@@ -21,4 +21,21 @@ class Car extends Model
      public function carsModels(){
          return $this->hasMany(CarModel::class);
      }
+
+     public function headquarter(){
+         return $this->hasOne(Headquater::class);
+     }
+     // define a has many relationship
+
+     public function engines(){
+         
+        return $this->hasManyThrough(
+            Engine::class,
+            CarModel::class,
+            'car_id'.// Foreign key on CarModel table
+            'model_id' // Foreign key on Engine table
+        );
+        
+
+     }
 }
