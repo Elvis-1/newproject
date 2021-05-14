@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Rules\Uppercase;
+use App\Http\Requests\CreateValidationRequest;
 
 class CarsController extends Controller
 {
@@ -91,6 +92,8 @@ class CarsController extends Controller
             'founded' => 'required|integer|min:0|max:2021',
             'description' => 'required'
         ]);
+        // if it's valid, it will proceed
+        // if it's not valid, throw a validationExeption
         // dd('ok');
 
         // $car = new Car;

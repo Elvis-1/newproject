@@ -66,5 +66,7 @@ composer create-project laravel/laravel newproject
 16) request validation
 17) to set your own rules, do '$ php artisan make:rule Uppercase'
    go to uppercase in the rules folder and work on it and require it in your controller 'use App\Rules\Uppercase;'
-    
-
+18) Form request
+   run 'php artisan make:request nameofrequest'
+   the form request created is found in the request folder    
+   add it the controller where its needed
